@@ -23,24 +23,24 @@ public class SearchResultsPage implements IUpperMenu{
                 .as("Наименование у переданного товара");
     }
 
-    private static class SingletonHelper{
-        private static final SearchResultsPage INSTANCE = new SearchResultsPage();
-    }
-
-    public static SearchResultsPage getPage(){
-        return SearchResultsPage.SingletonHelper.INSTANCE;
-    }
-
-    @Step("Добавить товар в корзину по индексу")
     public SearchResultsPage addItemInCart(int indexNumberOfItem) {
-        if (indexNumberOfItem > SEARCH_RESULTS_BUY_BTN.size() || indexNumberOfItem !=0) {
-            getBuyBtnFromElement(
-                    SEARCH_RESULTS_BUY_BTN.get(indexNumberOfItem - 1)
-                    .as("Товар в результатах поиска с индексом: " + indexNumberOfItem)
-                    ).click();
-        }
-        else
-            throw new IllegalStateException("The number of item is greater that result list size or equals zero!");
+        return addItemsInCart(List.of(indexNumberOfItem));
+    }
+
+    @Step("Добавить товары в корзину по индексам")
+    public SearchResultsPage addItemsInCart(List<Integer> indexNumbersOfItem) {
+
+        indexNumbersOfItem.forEach(indexNumberOfItem -> {
+            if (indexNumberOfItem > SEARCH_RESULTS_BUY_BTN.size() || indexNumberOfItem !=0) {
+                getBuyBtnFromElement(
+                        SEARCH_RESULTS_BUY_BTN.get(indexNumberOfItem - 1)
+                                .as("Товар в результатах поиска с индексом: " + indexNumberOfItem)
+                ).click();
+            }
+            else
+                throw new IllegalStateException("The number of item is greater that result list size or equals zero!");
+
+        });
 
         return this;
     }

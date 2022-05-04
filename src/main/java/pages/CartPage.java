@@ -27,14 +27,6 @@ public class CartPage implements IUpperMenu {
         return $x(".//div[@class='empty-message__title-empty-cart']").as("Страница корзины - Текст 'Корзина пуста'");
     }
 
-    private static class SingletonHelper{
-        private static final CartPage INSTANCE = new CartPage();
-    }
-
-    public static CartPage getPage(){
-        return SingletonHelper.INSTANCE;
-    }
-
     @Step("Получить название товаров в корзине")
     public List<String> getCartItemsNames() {
         return CART_ITEMS_NAMES.texts();

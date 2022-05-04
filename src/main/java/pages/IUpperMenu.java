@@ -13,6 +13,6 @@ public interface IUpperMenu {
     @Step("Переход на страницу корзины через верхнее меню")
     default CartPage goToCartPage(){
         seCartIcon.shouldBe(visible).click();
-        return CartPage.getPage();
+        return new CartPage();
     }
 }

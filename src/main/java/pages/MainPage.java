@@ -29,7 +29,7 @@ public class MainPage implements IUpperMenu{
         refresh();
         setTextToSearchField(text)
                 .clickObSearchBtn();
-        return SearchResultsPage.getPage();
+        return new SearchResultsPage();
     }
 
 
