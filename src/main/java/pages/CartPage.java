@@ -2,8 +2,8 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.util.List;
 
@@ -35,6 +35,7 @@ public class CartPage implements IUpperMenu {
         return SingletonHelper.INSTANCE;
     }
 
+    @Step("Получить название товаров в корзине")
     public List<String> getCartItemsNames() {
         return CART_ITEMS_NAMES.texts();
     }
@@ -43,6 +44,7 @@ public class CartPage implements IUpperMenu {
         return getEmptyCartText().should(Condition.exist).is(Condition.visible);
     }
 
+    @Step("Удаление всех товаров в корзине")
     public CartPage removeAllItemsFromCart() {
         if (!SELECT_ALL_CHECKBOX_ACTIVE.exists())
             SELECT_ALL_BTN.click();

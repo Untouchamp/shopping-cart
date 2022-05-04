@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class SearchResultsPage implements IUpperMenu{
         return SearchResultsPage.SingletonHelper.INSTANCE;
     }
 
+    @Step("Добавить товар в корзину по индексу")
     public SearchResultsPage addItemInCart(int indexNumberOfItem) {
         if (indexNumberOfItem > SEARCH_RESULTS_BUY_BTN.size() || indexNumberOfItem !=0) {
             getBuyBtnFromElement(
@@ -43,6 +45,7 @@ public class SearchResultsPage implements IUpperMenu{
         return this;
     }
 
+    @Step("Получить имена товаров по индексу")
     public List<String> getNamesOfItemsByIndex(List<Integer> indexNumbersOfItem) {
         List<String> names = new ArrayList<>();
         indexNumbersOfItem.forEach(indexNumberOfItem -> {

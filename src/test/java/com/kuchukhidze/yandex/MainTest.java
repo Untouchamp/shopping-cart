@@ -39,7 +39,6 @@ public class MainTest extends UITestSetup {
         String cartItemName =
                 SearchResultsPage.getPage()
                 .addItemInCart(itemIndex)
-                .modalCartShouldClose(page(SearchResultsPage.class))
                 .goToCartPage()
                 .getCartItemsNames().stream().findFirst().orElse("Список наименований пуст!");
 
@@ -62,7 +61,6 @@ public class MainTest extends UITestSetup {
         int secondItemIndex = 2;
         boolean cartIsEmpty = mainPage.searchResultsForText(searchText)
                 .addItemInCart(firstItemIndex)
-                .modalCartShouldClose(searchPage)
                 .addItemInCart(secondItemIndex)
                 .goToCartPage()
                 .removeAllItemsFromCart()
